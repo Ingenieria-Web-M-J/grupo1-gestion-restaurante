@@ -2,8 +2,8 @@ import { mainTexts } from "@/types/types";
 
 export function SidePanel(props: mainTexts) {
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100 py-6">
-            <div className="flex w-full max-w-xs p-4 bg-gray-800">
+        <div className="min-h-screen flex items-center justify-center bg-gray-800 py-6">
+            <div className="flex w-full max-w-xs p-4 bg-gray-800 fixed top-0">
                 <ul className="flex flex-col w-full">
                     <li className="my-px">
                         <a href="#"
