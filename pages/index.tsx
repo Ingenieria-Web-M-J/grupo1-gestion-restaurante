@@ -1,5 +1,12 @@
-const Home = () => {
-  return <main className='h-screen w-full flex items-center justify-center'>Hola mundo</main>;
-};
+import { ExampleComponent } from "@/components/ExampleComponent";
+import { LoginForm } from "@/components/Forms/modules";
+import { MainMenu } from "@/components/HomePage/modules";
 
-export default Home;
+export default function Home(){
+   return (
+    <div>
+      <MainMenu></MainMenu>
+      <LoginForm></LoginForm>
+    </div>
+   );
+};
