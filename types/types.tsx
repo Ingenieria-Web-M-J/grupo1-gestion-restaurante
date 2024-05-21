@@ -14,6 +14,9 @@ export type mainTexts = {
     link?: string;
     careerText?: string;
     priceText?: string;
+    id?: string;
+    stateText?: string;
+
 
 }
 
