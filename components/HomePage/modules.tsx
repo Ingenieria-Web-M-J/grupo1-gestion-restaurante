@@ -6,30 +6,21 @@ export function MainMenu(props: mainTexts) {
             <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
                 <div className="flex lg:flex-1">
                     <a href="#" className="-m-1.5 p-1.5">
-                        <span className="sr-only">Your Company</span>
-                        <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
+                        <span className="sr-only">Gourmet Code</span>
+                        <img className="h-8 w-auto" src="/gourmetcode.png" alt="" />
                     </a>
                 </div>
-                <div className="flex lg:hidden">
-                    <button type="button" className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
-                        <span className="sr-only">Open main menu</span>
-                        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                        </svg>
-                    </button>
-                </div>
                 <div className="hidden lg:flex lg:gap-x-12">
-                    <a href="#" className="text-sm font-semibold leading-6 text-gray-900">Home</a>
-                    <a href="#" className="text-sm font-semibold leading-6 text-gray-900">Menu</a>
-                    <a href="#" className="text-sm font-semibold leading-6 text-gray-900">Pedidos</a>
-                    <a href="#" className="text-sm font-semibold leading-6 text-gray-900">Nosotros</a>
-                    <a href="#" className="text-sm font-semibold leading-6 text-gray-900">Contacto</a>
+                    <a href="/" className="text-sm font-semibold leading-6 text-gray-900">Home</a>
+                    <a href="/menu" className="text-sm font-semibold leading-6 text-gray-900">Menu</a>
+                    <a href="/pedidos" className="text-sm font-semibold leading-6 text-gray-900">Pedidos</a>
+                    <a href="/contacto" className="text-sm font-semibold leading-6 text-gray-900">Contacto</a>
                 </div>
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-                    <a href="#" className="text-sm font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
+                    <a href="/login" className="text-sm font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
                 </div>
             </nav>
-            <div className="lg:hidden" role="dialog" aria-modal="true">
+            {/* <div className="lg:hidden" role="dialog" aria-modal="true">
                 <div className="fixed inset-0 z-10"></div>
                 <div className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
                     <div className="flex items-center justify-between">
@@ -73,7 +64,7 @@ export function MainMenu(props: mainTexts) {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </header>
     )
 };
@@ -84,8 +75,8 @@ export function MainBanner() {
             <div className="pb-80 pt-16 sm:pb-40 sm:pt-24 lg:pb-48 lg:pt-40">
                 <div className="relative mx-auto max-w-7xl px-4 sm:static sm:px-6 lg:px-8">
                     <div className="sm:max-w-lg">
-                        <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Summer styles are finally here</h1>
-                        <p className="mt-4 text-xl text-gray-500">This year, our new summer collection will shelter you from the harsh elements of a world that doesn't care if you live or die.</p>
+                        <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">La mejor comida, cerca de ti</h1>
+                        <p className="mt-4 text-xl text-gray-500">Comida rápida, balanceada y económica para los programadores contemporáneos.</p>
                     </div>
                     <div>
                         <div className="mt-10">
@@ -94,36 +85,36 @@ export function MainBanner() {
                                     <div className="flex items-center space-x-6 lg:space-x-8">
                                         <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
                                             <div className="h-64 w-44 overflow-hidden rounded-lg sm:opacity-0 lg:opacity-100">
-                                                <img src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-01.jpg" alt="" className="h-full w-full object-cover object-center" />
+                                                <img src="/1.webp" alt="" className="h-full w-full object-cover object-center" />
                                             </div>
                                             <div className="h-64 w-44 overflow-hidden rounded-lg">
-                                                <img src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-02.jpg" alt="" className="h-full w-full object-cover object-center" />
-                                            </div>
-                                        </div>
-                                        <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                                            <div className="h-64 w-44 overflow-hidden rounded-lg">
-                                                <img src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-03.jpg" alt="" className="h-full w-full object-cover object-center" />
-                                            </div>
-                                            <div className="h-64 w-44 overflow-hidden rounded-lg">
-                                                <img src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-04.jpg" alt="" className="h-full w-full object-cover object-center" />
-                                            </div>
-                                            <div className="h-64 w-44 overflow-hidden rounded-lg">
-                                                <img src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-05.jpg" alt="" className="h-full w-full object-cover object-center" />
+                                                <img src="/2.webp" alt="" className="h-full w-full object-cover object-center" />
                                             </div>
                                         </div>
                                         <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
                                             <div className="h-64 w-44 overflow-hidden rounded-lg">
-                                                <img src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-06.jpg" alt="" className="h-full w-full object-cover object-center" />
+                                                <img src="/3.webp" alt="" className="h-full w-full object-cover object-center" />
                                             </div>
                                             <div className="h-64 w-44 overflow-hidden rounded-lg">
-                                                <img src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-07.jpg" alt="" className="h-full w-full object-cover object-center" />
+                                                <img src="/4.webp" alt="" className="h-full w-full object-cover object-center" />
+                                            </div>
+                                            <div className="h-64 w-44 overflow-hidden rounded-lg">
+                                                <img src="/5.webp" alt="" className="h-full w-full object-cover object-center" />
+                                            </div>
+                                        </div>
+                                        <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
+                                            <div className="h-64 w-44 overflow-hidden rounded-lg">
+                                                <img src="/6.webp" alt="" className="h-full w-full object-cover object-center" />
+                                            </div>
+                                            <div className="h-64 w-44 overflow-hidden rounded-lg">
+                                                <img src="/7.webp" alt="" className="h-full w-full object-cover object-center" />
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <a href="#" className="inline-block rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-center font-medium text-white hover:bg-indigo-700">Shop Collection</a>
+                            <a href="#" className="inline-block rounded-md border border-transparent bg-red-600 px-8 py-3 text-center font-medium text-white hover:bg-indigo-700">Ver menu</a>
                         </div>
                     </div>
                 </div>
@@ -142,34 +133,53 @@ export function ProductBanner() {
                 <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
                     <a href="#" className="group">
                         <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-                            <img src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg" alt="Tall slender porcelain bottle with natural clay textured body and cork stopper." className="h-full w-full object-cover object-center group-hover:opacity-75"/>
+                            <img src="/1.webp" alt="Tall slender porcelain bottle with natural clay textured body and cork stopper." className="h-full w-full object-cover object-center group-hover:opacity-75"/>
                         </div>
-                        <h3 className="mt-4 text-sm text-gray-700">Earthen Bottle</h3>
-                        <p className="mt-1 text-lg font-medium text-gray-900">$48</p>
+                        <h3 className="mt-4 text-sm text-gray-700">Solomillo braseado en salsa de higos</h3>
+                        <p className="mt-1 text-lg font-medium text-gray-900">$22.000</p>
                     </a>
                     <a href="#" className="group">
                         <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-                            <img src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-02.jpg" alt="Olive drab green insulated bottle with flared screw lid and flat top." className="h-full w-full object-cover object-center group-hover:opacity-75"/>
+                            <img src="/2.webp" alt="Olive drab green insulated bottle with flared screw lid and flat top." className="h-full w-full object-cover object-center group-hover:opacity-75"/>
                         </div>
-                        <h3 className="mt-4 text-sm text-gray-700">Nomad Tumbler</h3>
-                        <p className="mt-1 text-lg font-medium text-gray-900">$35</p>
+                        <h3 className="mt-4 text-sm text-gray-700">Salmón con salsa al cava</h3>
+                        <p className="mt-1 text-lg font-medium text-gray-900">$21.000</p>
                     </a>
                     <a href="#" className="group">
                         <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-                            <img src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-03.jpg" alt="Person using a pen to cross a task off a productivity paper card." className="h-full w-full object-cover object-center group-hover:opacity-75"/>
+                            <img src="/3.webp" alt="Person using a pen to cross a task off a productivity paper card." className="h-full w-full object-cover object-center group-hover:opacity-75"/>
                         </div>
-                        <h3 className="mt-4 text-sm text-gray-700">Focus Paper Refill</h3>
-                        <p className="mt-1 text-lg font-medium text-gray-900">$89</p>
+                        <h3 className="mt-4 text-sm text-gray-700">Arroz de magro y setas</h3>
+                        <p className="mt-1 text-lg font-medium text-gray-900">$19.000</p>
                     </a>
                     <a href="#" className="group">
                         <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-                            <img src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg" alt="Hand holding black machined steel mechanical pencil with brass tip and top." className="h-full w-full object-cover object-center group-hover:opacity-75"/>
+                            <img src="/4.webp" alt="Hand holding black machined steel mechanical pencil with brass tip and top." className="h-full w-full object-cover object-center group-hover:opacity-75"/>
                         </div>
-                        <h3 className="mt-4 text-sm text-gray-700">Machined Mechanical Pencil</h3>
-                        <p className="mt-1 text-lg font-medium text-gray-900">$35</p>
+                        <h3 className="mt-4 text-sm text-gray-700">Lasaña boloñesa</h3>
+                        <p className="mt-1 text-lg font-medium text-gray-900">$23.000</p>
                     </a>
                 </div>
             </div>
         </div>
     )
 };
+
+export function BreadCrumbs(props: mainTexts){
+    return(
+        <nav aria-label="breadcrumb" className="w-max">
+            <ol className="flex flex-wrap items-center w-full pr-4 py-2 rounded-md bg-blue-gray-50 bg-opacity-60 my-4">
+                <li
+                    className="flex items-center font-sans text-sm antialiased font-normal leading-normal transition-colors duration-300 cursor-pointer text-blue-gray-900 hover:text-light-blue-500">
+                    <a href="#" className="opacity-60">Home</a><span
+                        className="mx-2 font-sans text-sm antialiased font-normal leading-normal pointer-events-none select-none text-blue-gray-500">/</span>
+                </li>
+                <li
+                    className="flex items-center font-sans text-sm antialiased font-normal leading-normal transition-colors duration-300 cursor-pointer text-blue-gray-900 hover:text-light-blue-500">
+                    <a href="#" className="opacity-60">{props.pText}</a><span
+                        className="mx-2 font-sans text-sm antialiased font-normal leading-normal pointer-events-none select-none text-blue-gray-500">/</span>
+                </li>
+            </ol>
+        </nav>
+    );
+}

@@ -13,6 +13,7 @@ export type mainTexts = {
     linkText?: string;
     link?: string;
     careerText?: string;
+    priceText?: string;
 
 }
 
