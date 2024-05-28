@@ -33,49 +33,6 @@ export default function Menu() {
                 ></ProductItem>
               ))
             )}
-
-            <ProductItem
-              link="/single-product/template"
-              priceText="$20.000"
-              srcImg="/1.webp"
-              hText="Comida 1"
-            ></ProductItem>
-            <ProductItem
-              link="/single-product/template"
-              priceText="$20.000"
-              srcImg="/2.webp"
-              hText="Comida 2"
-            ></ProductItem>
-            <ProductItem
-              link="/single-product/template"
-              priceText="$20.000"
-              srcImg="/3.webp"
-              hText="Comida 3"
-            ></ProductItem>
-            <ProductItem
-              link="/single-product/template"
-              priceText="$20.000"
-              srcImg="/4.webp"
-              hText="Comida 4"
-            ></ProductItem>
-            <ProductItem
-              link="/single-product/template"
-              priceText="$20.000"
-              srcImg="/5.webp"
-              hText="Comida 5"
-            ></ProductItem>
-            <ProductItem
-              link="/single-product/template"
-              priceText="$20.000"
-              srcImg="/6.webp"
-              hText="Comida 6"
-            ></ProductItem>
-            <ProductItem
-              link="/single-product/template"
-              priceText="$20.000"
-              srcImg="/7.webp"
-              hText="Comida 7"
-            ></ProductItem>
           </div>
         </div>
       </div>
