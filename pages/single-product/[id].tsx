@@ -31,7 +31,7 @@ export default function SingleProduct(props: mainTexts) {
         <ProductContainer
           hText={producto.name}
           priceText={producto.price}
-          srcImg="/1.webp"
+          srcImg="/sancocho.webp"
           pText={producto.description}
         ></ProductContainer>
       </div>

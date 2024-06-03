@@ -1,13 +1,16 @@
 import { client } from "@/graphql/client";
 import "@/styles/globals.css";
 import { ApolloProvider } from "@apollo/client";
+import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
 
-const App = ({ Component, pageProps }: AppProps) => {
+const App = ({ Component, pageProps: { session, ...pageProps } }: AppProps) => {
   return (
-    <ApolloProvider client={client}>
-      <Component {...pageProps} />
-    </ApolloProvider>
+    <SessionProvider session={session}>
+      <ApolloProvider client={client}>
+        <Component {...pageProps} />
+      </ApolloProvider>
+    </SessionProvider>
   );
 };
 

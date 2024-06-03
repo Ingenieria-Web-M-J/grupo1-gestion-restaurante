@@ -1,4 +1,9 @@
+import { GET_COMIDA } from "@/hooks/react-query/user/user";
 import { mainTexts } from "@/types/types";
+import { useQuery } from "@apollo/client";
+import { signIn } from "next-auth/react";
+import { ProductItem } from "../Products/modules";
+import Link from "next/link";
 
 export const MainMenu = (props: mainTexts) => {
   return (
@@ -8,41 +13,44 @@ export const MainMenu = (props: mainTexts) => {
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
-          <a href="/" className="-m-1.5 p-1.5">
+          <Link href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Gourmet Code</span>
             <img className="h-8 w-auto" src="/gourmetcode.png" alt="" />
-          </a>
+          </Link>
         </div>
         <div className="hidden lg:flex lg:gap-x-12">
-          <a href="/" className="text-sm font-semibold leading-6 text-gray-900">
+          <Link
+            href="/"
+            className="text-sm font-semibold leading-6 text-gray-900"
+          >
             Home
-          </a>
-          <a
+          </Link>
+          <Link
             href="/menu"
             className="text-sm font-semibold leading-6 text-gray-900"
           >
             Menu
-          </a>
-          <a
+          </Link>
+          <Link
             href="/pedidos"
             className="text-sm font-semibold leading-6 text-gray-900"
           >
             Pedidos
-          </a>
-          <a
+          </Link>
+          <Link
             href="/contacto"
             className="text-sm font-semibold leading-6 text-gray-900"
           >
             Contacto
-          </a>
+          </Link>
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a
-            href="/login"
+          <button
             className="text-sm font-semibold leading-6 text-gray-900"
+            onClick={() => signIn()}
           >
             Log in <span aria-hidden="true">&rarr;</span>
-          </a>
+          </button>
         </div>
       </nav>
       {/* <div className="lg:hidden" role="dialog" aria-modal="true">
@@ -175,12 +183,12 @@ export const MainBanner = () => {
                 </div>
               </div>
 
-              <a
-                href="#"
+              <Link
+                href="/menu"
                 className="inline-block rounded-md border border-transparent bg-red-600 px-8 py-3 text-center font-medium text-white hover:bg-indigo-700"
               >
                 Ver menu
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -190,62 +198,28 @@ export const MainBanner = () => {
 };
 
 export const ProductBanner = () => {
+  const { data, loading, refetch } = useQuery(GET_COMIDA);
+
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
         <h2 className="sr-only">Products</h2>
-
         <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-          <a href="#" className="group">
-            <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-              <img
-                src="/1.webp"
-                alt="Tall slender porcelain bottle with natural clay textured body and cork stopper."
-                className="h-full w-full object-cover object-center group-hover:opacity-75"
-              />
-            </div>
-            <h3 className="mt-4 text-sm text-gray-700">
-              Solomillo braseado en salsa de higos
-            </h3>
-            <p className="mt-1 text-lg font-medium text-gray-900">$22.000</p>
-          </a>
-          <a href="#" className="group">
-            <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-              <img
-                src="/2.webp"
-                alt="Olive drab green insulated bottle with flared screw lid and flat top."
-                className="h-full w-full object-cover object-center group-hover:opacity-75"
-              />
-            </div>
-            <h3 className="mt-4 text-sm text-gray-700">
-              Salmón con salsa al cava
-            </h3>
-            <p className="mt-1 text-lg font-medium text-gray-900">$21.000</p>
-          </a>
-          <a href="#" className="group">
-            <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-              <img
-                src="/3.webp"
-                alt="Person using a pen to cross a task off a productivity paper card."
-                className="h-full w-full object-cover object-center group-hover:opacity-75"
-              />
-            </div>
-            <h3 className="mt-4 text-sm text-gray-700">
-              Arroz de magro y setas
-            </h3>
-            <p className="mt-1 text-lg font-medium text-gray-900">$19.000</p>
-          </a>
-          <a href="#" className="group">
-            <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-              <img
-                src="/4.webp"
-                alt="Hand holding black machined steel mechanical pencil with brass tip and top."
-                className="h-full w-full object-cover object-center group-hover:opacity-75"
-              />
-            </div>
-            <h3 className="mt-4 text-sm text-gray-700">Lasaña boloñesa</h3>
-            <p className="mt-1 text-lg font-medium text-gray-900">$23.000</p>
-          </a>
+          {loading ? (
+            <></>
+          ) : (
+            data.getComida.map((producto: any) => (
+              <Link key={producto.id} href="#" className="group">
+                <ProductItem
+                  key={producto.id}
+                  link={`/single-product/${producto.id}`}
+                  priceText={`$${producto.price}`}
+                  srcImg="/sancocho.webp"
+                  hText={producto.name}
+                ></ProductItem>
+              </Link>
+            ))
+          )}
         </div>
       </div>
     </div>

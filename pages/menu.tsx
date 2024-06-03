@@ -28,7 +28,7 @@ export default function Menu() {
                   key={producto.id}
                   link={`/single-product/${producto.id}`}
                   priceText={`$${producto.price}`}
-                  srcImg="/1.webp"
+                  srcImg="/sancocho.webp"
                   hText={producto.name}
                 ></ProductItem>
               ))
