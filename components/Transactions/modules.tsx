@@ -32,22 +32,22 @@ export const SidePanel = (props: mainTexts) => {
               srcImg="/icons/home.svg"
             ></ItemSidePanel>
             <ItemSidePanel
-              link="/pedidos"
+              link="/dashboard/pedidos"
               linkText="Pedidos"
               srcImg="/icons/orders.svg"
             ></ItemSidePanel>
             <ItemSidePanel
-              link="/pagos"
+              link="/dashboard/pagos"
               linkText="Pagos"
               srcImg="/icons/pay.svg"
             ></ItemSidePanel>
             <ItemSidePanel
-              link="/clientes"
+              link="/dashboard/clientes"
               linkText="Clientes"
               srcImg="/icons/clients.svg"
             ></ItemSidePanel>
             <ItemSidePanel
-              link="/perfil"
+              link="/dashboard/perfil"
               linkText="Mi perfil"
               srcImg="/icons/profile.svg"
             ></ItemSidePanel>
