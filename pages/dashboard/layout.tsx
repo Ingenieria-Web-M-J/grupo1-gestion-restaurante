@@ -7,7 +7,7 @@ export default function Layout({ children }) {
         <SidePanel></SidePanel>
       </div>
       <div className="lg:col-span-10 md:grid-cols-1 sm:grid-cols-1 grid-cols-1 bg-gray-200">
-        <BodyDashboard hText="Pedidos">{children}</BodyDashboard>
+        {children}
       </div>
     </div>
   );

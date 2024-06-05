@@ -32,7 +32,7 @@ export const MainMenu = (props: mainTexts) => {
             Menu
           </Link>
           <Link
-            href="/pedidos"
+            href="/dashboard/pedidos"
             className="text-sm font-semibold leading-6 text-gray-900"
           >
             Pedidos

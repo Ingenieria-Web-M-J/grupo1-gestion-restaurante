@@ -1,4 +1,6 @@
+import { DELETE_MOVEMENT, GET_MOVEMENT } from "@/hooks/react-query/user/user";
 import { mainTexts } from "@/types/types";
+import { useMutation, useQuery } from "@apollo/client";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -81,10 +83,25 @@ export const ItemSidePanel = (props: mainTexts) => {
     </li>
   );
 };
-export const BodyDashboard = (props: mainTexts) => {
+
+export const PedidosBodyDashboard = () => {
+  const { data, loading, refetch } = useQuery(GET_MOVEMENT);
+
+  const [deleteInventoryMovement] = useMutation(DELETE_MOVEMENT);
+
+  const handleDeletePedido = async (pedidoId: string) => {
+    try {
+      await deleteInventoryMovement({ variables: { id: pedidoId } });
+      alert("Movimiento borrado con exito");
+      refetch();
+    } catch (e) {
+      alert("No se pudo borrar el movimiento");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 p-6 md:w-full">
-      <h1 className="text-3xl font-bold mb-4 text-[#dc2626]">{props.hText}</h1>
+      <h1 className="text-3xl font-bold mb-4 text-[#dc2626]">Pedidos</h1>
       <div className="overflow-x-auto">
         <table className="lg:min-w-full bg-white w-full">
           <thead>
@@ -92,17 +109,33 @@ export const BodyDashboard = (props: mainTexts) => {
               <th className="py-2 px-4 border-b">ID</th>
               <th className="py-2 px-4 border-b">Producto</th>
               <th className="py-2 px-4 border-b">Precio</th>
+              <th className="py-2 px-4 border-b">Cantidad</th>
               <th className="py-2 px-4 border-b">Estado</th>
               <th className="py-2 px-4 border-b">Acciones</th>
             </tr>
           </thead>
           <tbody>
-            <ItemCrud
-              id="1"
-              hText="Comida 1"
-              priceText="20.000"
-              stateText="En cocina"
-            ></ItemCrud>
+            {loading ? (
+              <tr>
+                <td colSpan={6} className="text-center">
+                  Cargando...
+                </td>
+              </tr>
+            ) : (
+              data.getMovement?.map((producto: any) => (
+                <ItemCrud
+                  key={producto.id + producto.name}
+                  id={producto.id}
+                  hText={producto.material.name}
+                  priceText={`${producto.material.price}`}
+                  quantityText={producto.quantity}
+                  stateText={producto.state}
+                  handleMutationResolver={() => {
+                    handleDeletePedido(producto.id);
+                  }}
+                ></ItemCrud>
+              ))
+            )}
           </tbody>
         </table>
       </div>
@@ -110,18 +143,71 @@ export const BodyDashboard = (props: mainTexts) => {
   );
 };
 
-export const ItemCrud = (props: mainTexts) => {
+export const BodyDashboard = (props: {
+  hText: string;
+  content: Array<any>;
+}) => {
+  console.log(props.content);
+  if (props.hText == "Pagos") {
+    return (
+      <div className="min-h-screen bg-gray-100 p-6 md:w-full">
+        <h1 className="text-3xl font-bold mb-4 text-[#dc2626]">
+          {props.hText}
+        </h1>
+        <div className="overflow-x-auto">
+          <table className="lg:min-w-full bg-white w-full">
+            <thead>
+              <tr>
+                <th className="py-2 px-4 border-b">ID</th>
+                <th className="py-2 px-4 border-b">Producto</th>
+                <th className="py-2 px-4 border-b">Metodo de pago</th>
+                <th className="py-2 px-4 border-b">Total</th>
+                <th className="py-2 px-4 border-b">Estado</th>
+                <th className="py-2 px-4 border-b">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {/*props.content?.map((producto: any) => (
+                <ItemCrud
+                  key={producto.id + producto.name}
+                  id={producto.id}
+                  hText={producto.material.name}
+                  priceText={`${producto.material.price}`}
+                  quantityText={producto.quantity}
+                  stateText={producto.state}
+                ></ItemCrud>
+              ))*/}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    );
+  }
+};
+
+export const ItemCrud = (props: {
+  id: string;
+  hText: string;
+  priceText: string;
+  quantityText: string;
+  stateText: string;
+  handleMutationResolver: () => void;
+}) => {
   return (
     <tr>
       <td className="py-2 px-4 border-b text-center">{props.id}</td>
       <td className="py-2 px-4 border-b text-center">{props.hText}</td>
       <td className="py-2 px-4 border-b text-center">${props.priceText}</td>
+      <td className="py-2 px-4 border-b text-center">{props.quantityText}</td>
       <td className="py-2 px-4 border-b text-center">{props.stateText}</td>
       <td className="py-2 px-4 border-b space-x-2 text-center">
         <button className="bg-gray-600 text-white px-4 py-2 rounded hover:bg-black">
           Edit
         </button>
-        <button className="bg-[#dc2626] text-white px-4 py-2 rounded hover:bg-black">
+        <button
+          className="bg-[#dc2626] text-white px-4 py-2 rounded hover:bg-black"
+          onClick={props.handleMutationResolver}
+        >
           Delete
         </button>
       </td>
