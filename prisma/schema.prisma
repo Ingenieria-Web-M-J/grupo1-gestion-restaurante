@@ -50,6 +50,7 @@ model User {
   sessions      Session[]
   materials     Material[]
   movements     InventoryMovement[]
+  payments      Payment[]
 }
 
 model Material {
@@ -74,12 +75,22 @@ model InventoryMovement {
 // Usado como un estilo de trazabilidad de todos los movimientos de "inventario"
 // Se podría utilizar para guardar los pedidos, en el que una ENTRADA suma elementos de material y una SALIDA se realiza cuando se hace un pedido.
   id           String            @id @default(cuid())
-  movementType Enum_MovementType
-  quantity     Int
+  movementType Enum_MovementType  // Tipo de movimiento. SALIDA es para un pedido saliente, ENTRADA es para restock de material
+  quantity     Int               //Cantidad de elementos involucrados en el movimiento
   material     Material          @relation(fields: [materialId], references: [id])
   materialId   String
+  paymentId    String   // Foreign key field
+  payment      Payment  @relation(fields: [paymentId], references: [id])
   createdBy    User              @relation(fields: [userId], references: [id])
   userId       String
+  state        Enum_Movement_State?   // Campo opcional para el estado actual de el movimiento. De momento sólo aplicable a pedidos.
+  // state es un campo que debe poderse actualizar.
+}
+
+enum Enum_Movement_State {
+  PENDIENTE
+  COCINANDO
+  ENVIADO
 }
 
 enum Enum_RoleName {
@@ -88,8 +99,8 @@ enum Enum_RoleName {
 }
 
 model Role {
-  id   String        @id @default(cuid())
-  name Enum_RoleName @unique
+  id        String        @id @default(cuid())
+  name      Enum_RoleName @unique
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -102,4 +113,20 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+enum Enum_Payment_Method {
+  PSE
+  TARJETA_CREDITO
+  EFECTIVO
+}
+
+model Payment {
+  id            String  @id @default(cuid())
+  items         InventoryMovement[]
+  createdBy     User  @relation(fields: [userId], references: [id])
+  userId        String  
+  paymentDate   DateTime  @default(now())
+  paymentMethod Enum_Payment_Method
+  total         Int
 }
