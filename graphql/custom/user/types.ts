@@ -26,6 +26,7 @@ const User = gql`
         quantity: Int!
         description: String
         price: Int
+        userId: String!
     }
 
     type InventoryMovement {
@@ -47,6 +48,7 @@ const User = gql`
     }
 
     type Mutation {
+        createMaterial(id: String!, name: String!, quantity: Int!, userId: String!, description: String, price: Int!): Material!
         deleteMovement(id: String!): InventoryMovement!
     }
 

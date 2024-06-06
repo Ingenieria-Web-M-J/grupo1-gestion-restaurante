@@ -36,6 +36,19 @@ export const GET_COMIDA_BY_ID = gql`
             }
 `
 
+export const CREATE_COMIDA = gql`
+    mutation createMaterial($id: String!, $name: String!, $quantity: Int!, $userId: String!, $description: String, $price: Int!){
+        createMaterial(id: $id, name: $name, quantity: $quantity, userId: $userId, description: $description, price: $price){
+            id
+            name
+            quantity
+            description
+            price
+            userId
+        }
+    }
+`
+
 export const GET_MOVEMENT = gql`
             query getMovement{
                 getMovement{
