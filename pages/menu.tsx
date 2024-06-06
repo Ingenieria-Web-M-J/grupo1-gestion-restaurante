@@ -23,7 +23,7 @@ export default function Menu() {
             {loading ? (
               <></>
             ) : (
-              data.getComida.map((producto: Producto) => (
+              data?.getComida.map((producto: Producto) => (
                 <ProductItem
                   key={producto.id}
                   link={`/single-product/${producto.id}`}

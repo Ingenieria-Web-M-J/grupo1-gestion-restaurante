@@ -19,7 +19,12 @@ export const ProductItem = (props: mainTexts) => {
   );
 };
 
-export const ProductInfo = (props: mainTexts) => {
+export const ProductInfo = (props: {
+  hText: string;
+  priceText: string;
+  pText: string;
+  productoQuantity: number;
+}) => {
   return (
     <div className="mt-4 lg:row-span-3 lg:mt-0">
       <h2 className="sr-only">Informacion de producto</h2>
@@ -37,12 +42,12 @@ export const ProductInfo = (props: mainTexts) => {
           <p className="text-base text-gray-900">{props.pText}</p>
         </div>
       </div>
-      <QuantitySelector quantity={25}></QuantitySelector>
+      <QuantitySelector quantity={props.productoQuantity}></QuantitySelector>
       <button
         type="submit"
         className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-red-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
       >
-        Agregar al carrito
+        Pedir
       </button>
     </div>
   );
@@ -100,7 +105,13 @@ export const ProductImg = (props: mainTexts) => {
   );
 };
 
-export const ProductContainer = (props: mainTexts) => {
+export const ProductContainer = (props: {
+  hText: string;
+  priceText: string;
+  pText: string;
+  srcImg: string;
+  productQuantity: number;
+}) => {
   return (
     <div className="bg-white">
       <div className="pt-6">
@@ -111,6 +122,7 @@ export const ProductContainer = (props: mainTexts) => {
             hText={props.hText}
             priceText={props.priceText}
             pText={props.pText}
+            productoQuantity={props.productQuantity}
           ></ProductInfo>
           <ProductImg srcImg={props.srcImg}></ProductImg>
         </div>

@@ -4,6 +4,7 @@ import { useQuery } from "@apollo/client";
 import { signIn } from "next-auth/react";
 import { ProductItem } from "../Products/modules";
 import Link from "next/link";
+import Image from "next/image";
 
 export const MainMenu = (props: mainTexts) => {
   return (
@@ -208,7 +209,7 @@ export const ProductBanner = () => {
           {loading ? (
             <></>
           ) : (
-            data.getComida.map((producto: any) => (
+            data?.getComida.map((producto: any) => (
               <Link key={producto.id} href="#" className="group">
                 <ProductItem
                   key={producto.id}

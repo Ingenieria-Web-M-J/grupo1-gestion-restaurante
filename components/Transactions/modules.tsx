@@ -122,7 +122,7 @@ export const PedidosBodyDashboard = () => {
                 </td>
               </tr>
             ) : (
-              data.getMovement?.map((producto: any) => (
+              data?.getMovement?.map((producto: any) => (
                 <ItemCrud
                   key={producto.id + producto.name}
                   id={producto.id}
