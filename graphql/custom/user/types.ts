@@ -35,8 +35,8 @@ const User = gql`
         materialId: String!
         quantity: Int!
         userId: String!
-        type: String!
         state: Enum_Movement_State
+        paymentId: String
     }
 
     type Query {
@@ -49,6 +49,8 @@ const User = gql`
 
     type Mutation {
         createMaterial(id: String!, name: String!, quantity: Int!, userId: String!, description: String, price: Int!): Material!
+        updateMaterial(id: String!, name: String!, quantity: Int!, userId: String!, description: String, price: Int!): Material!
+        createPedido(id: String!, movementType: String!, materialId: String!, quantity: Int!, userId: String!, paymentId: String, state: Enum_Movement_State!): InventoryMovement!
         deleteMovement(id: String!): InventoryMovement!
     }
 

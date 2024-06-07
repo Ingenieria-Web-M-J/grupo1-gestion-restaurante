@@ -13,16 +13,6 @@ export const SingleProduct = (props: mainTexts) => {
     variables: { id },
   });
 
-  const handleCrearPedido = () => {
-    const materialPedido = { ...data.getComidaById }; // Copia del objeto Material. Que representa el plato
-
-    // Luego se construye el objeto MovementType con un enum type correspondiente a "SALIDA"
-    // Más adelante se llama a la mutación necesaria. Esta mutación crea el movementType y también actualiza la comida, descontando quantity en las unidades pedidas
-    materialPedido["quantity"] = console.log(materialPedido);
-
-    // createPedido({});
-  };
-
   if (loading) return <></>;
   else {
     return (
@@ -33,14 +23,15 @@ export const SingleProduct = (props: mainTexts) => {
         ) : (
           <>
             <div className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
-              <BreadCrumbs pText={data.getComidaById.name}></BreadCrumbs>
+              <BreadCrumbs pText={data?.getComidaById.name}></BreadCrumbs>
             </div>
             <ProductContainer
-              hText={data.getComidaById.name}
-              priceText={data.getComidaById.price}
+              hText={data?.getComidaById.name}
+              priceText={data?.getComidaById.price}
               srcImg="/sancocho.webp"
-              pText={data.getComidaById.description}
-              productQuantity={data.getComidaById.quantity}
+              pText={data?.getComidaById.description}
+              productQuantity={data?.getComidaById.quantity}
+              materialInfo={data?.getComidaById}
             ></ProductContainer>
           </>
         )}

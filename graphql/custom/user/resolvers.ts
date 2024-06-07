@@ -1,4 +1,5 @@
 import prisma from "@/config/prisma";
+import { Enum_MovementType, Enum_Movement_State } from "@prisma/client";
 
 const User = {
     User: {},
@@ -9,7 +10,9 @@ const User = {
         getMovement: () => prisma.inventoryMovement.findMany({include:{material:true}}),
     },
     Mutation: {
+        createPedido: async (_, args:{id: string, movementType: Enum_MovementType, quantity: number, materialId: string, userId: string, state: Enum_Movement_State, paymentId: string}) => prisma.inventoryMovement.create({data:{id:args.id, movementType:args.movementType, quantity:args.quantity, materialId:args.materialId, userId:args.userId, state:args.state, paymentId:args.paymentId}}),
         createMaterial: async (_, args:{id: string, name: string, quantity:number, userId:string, description:string, price: number}) => prisma.material.create({data:{id:args.id, name:args.name, quantity:args.quantity, userId:args.userId, description:args.description, price:args.price}}),
+        updateMaterial: async (_, args:{id: string, name: string, quantity:number, userId:string, description:string, price: number}) => prisma.material.update({where:{id:args.id}, data:{name:args.name, quantity:args.quantity, userId:args.userId, description:args.description, price:args.price}}),
         deleteMovement: async (_, args:{id:string}) => prisma.inventoryMovement.delete({where:{id:args.id}})
     }
 };
