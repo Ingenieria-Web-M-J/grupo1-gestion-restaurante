@@ -12,7 +12,7 @@ export default function Dashboard() {
     try {
       await createComida({
         variables: {
-          id: "2-arroz",
+          id: nanoid(),
           userId: "pruebaUser",
           name: "arroz",
           quantity: 1,
