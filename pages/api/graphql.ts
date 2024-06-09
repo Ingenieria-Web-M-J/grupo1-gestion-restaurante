@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 //import 'reflect-metadata';
 //import 'ts-tiny-invariant';
 import { ApolloServer } from 'apollo-server-micro';

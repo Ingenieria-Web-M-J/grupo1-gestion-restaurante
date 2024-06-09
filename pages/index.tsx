@@ -1,11 +1,10 @@
-import { LoginForm } from "@/components/Forms/modules";
 import {
   MainBanner,
   MainMenu,
   ProductBanner,
 } from "@/components/HomePage/modules";
 
-export default function Home() {
+export const Home = () => {
   return (
     <div>
       <MainMenu></MainMenu>
@@ -13,4 +12,6 @@ export default function Home() {
       <ProductBanner></ProductBanner>
     </div>
   );
-}
+};
+
+export default Home;

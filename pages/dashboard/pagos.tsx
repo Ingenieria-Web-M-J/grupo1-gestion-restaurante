@@ -1,10 +1,12 @@
-import { SidePanel, BodyDashboard } from "@/components/Transactions/modules";
+import { BodyDashboard } from "@/components/Transactions/modules";
 
 import Layout from "./layout";
-export default function Pagos() {
+export const Pagos = () => {
   return (
     <Layout>
       <BodyDashboard hText="Pagos"></BodyDashboard>
     </Layout>
   );
-}
+};
+
+export default Pagos;

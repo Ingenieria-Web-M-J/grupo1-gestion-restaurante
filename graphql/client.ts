@@ -1,3 +1,4 @@
+/* eslint-disable no-var */
 import { ApolloClient, InMemoryCache, from, HttpLink } from '@apollo/client';
 
 declare global {

@@ -6,10 +6,10 @@ import {
 } from "@/hooks/react-query/user/user";
 import { mainTexts } from "@/types/types";
 import { useMutation, useQuery } from "@apollo/client";
-import Image from "next/image";
+
 import Link from "next/link";
 
-export const SidePanel = (props: mainTexts) => {
+export const SidePanel = () => {
   return (
     <div className="flex">
       <div className="block lg:hidden border-solid border-2 border-[#dc2626] w-full p-2 grid grid-cols-2">
@@ -127,19 +127,27 @@ export const PedidosBodyDashboard = () => {
                 </td>
               </tr>
             ) : (
-              data?.getMovement?.map((producto: any) => (
-                <ItemCrud
-                  key={producto.id + producto.name}
-                  id={producto.id}
-                  hText={producto.material.name}
-                  priceText={`${producto.material.price}`}
-                  quantityText={producto.quantity}
-                  stateText={producto.state}
-                  handleMutationResolver={() => {
-                    handleDeletePedido(producto.id);
-                  }}
-                ></ItemCrud>
-              ))
+              data?.getMovement?.map(
+                (producto: {
+                  id: string;
+                  name: string;
+                  material: { name: string; price: number };
+                  quantity: string;
+                  state: string;
+                }) => (
+                  <ItemCrud
+                    key={producto.id + producto.name}
+                    id={producto.id}
+                    hText={producto.material.name}
+                    priceText={`${producto.material.price}`}
+                    quantityText={producto.quantity}
+                    stateText={producto.state}
+                    handleMutationResolver={() => {
+                      handleDeletePedido(producto.id);
+                    }}
+                  ></ItemCrud>
+                )
+              )
             )}
           </tbody>
         </table>
@@ -228,11 +236,7 @@ export const ClientesBodyDashboard = () => {
   );
 };
 
-export const BodyDashboard = (props: {
-  hText: string;
-  content: Array<any>;
-}) => {
-  console.log(props.content);
+export const BodyDashboard = (props: { hText: string }) => {
   if (props.hText == "Pagos") {
     return (
       <div className="min-h-screen bg-gray-100 p-6 md:w-full">

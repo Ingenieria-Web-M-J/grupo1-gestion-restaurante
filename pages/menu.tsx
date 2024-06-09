@@ -11,7 +11,7 @@ interface Producto {
 }
 
 export default function Menu() {
-  const { data, loading, refetch } = useQuery(GET_COMIDA);
+  const { data, loading } = useQuery(GET_COMIDA);
   return (
     <div>
       <MainMenu></MainMenu>
