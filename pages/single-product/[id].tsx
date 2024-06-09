@@ -2,14 +2,13 @@
 import { BreadCrumbs, MainMenu } from "@/components/HomePage/modules";
 import { ProductContainer } from "@/components/Products/modules";
 import { GET_COMIDA_BY_ID } from "@/hooks/react-query/user/user";
-import { mainTexts } from "@/types/types";
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 
-export const SingleProduct = (props: mainTexts) => {
+export const SingleProduct = () => {
   const router = useRouter();
   const { id } = router.query;
-  const { data, loading, refetch } = useQuery(GET_COMIDA_BY_ID, {
+  const { data, loading } = useQuery(GET_COMIDA_BY_ID, {
     variables: { id },
   });
 

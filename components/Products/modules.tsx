@@ -1,8 +1,7 @@
 import { CREATE_PEDIDO, UPDATE_COMIDA } from "@/hooks/react-query/user/user";
-import { mainTexts, normalTexts } from "@/types/types";
+import { mainTexts } from "@/types/types";
 import { useMutation } from "@apollo/client";
 import { nanoid } from "nanoid";
-import { signIn, useSession } from "next-auth/react";
 import { useState } from "react";
 
 export const ProductItem = (props: mainTexts) => {
@@ -39,9 +38,15 @@ export const ProductInfo = (props: {
   priceText: string;
   pText: string;
   productoQuantity: number;
-  materialInfo: object;
+  materialInfo: {
+    id: string;
+    name: string;
+    quantity: number;
+    description: string;
+    price: number;
+    userId: string;
+  };
 }) => {
-  const { data: session } = useSession();
   const [orderQuantity, setOrderQuantity] = useState(0);
 
   const [queryCreatePedido] = useMutation(CREATE_PEDIDO);
@@ -61,7 +66,6 @@ export const ProductInfo = (props: {
       };
 
       try {
-        console.log(newPedido);
         await queryCreatePedido({ variables: newPedido });
 
         await queryUpdateComida({
@@ -78,8 +82,6 @@ export const ProductInfo = (props: {
       } catch (e) {
         alert("Error: Su pedido no se pudo realizar");
       }
-
-      console.log(newPedido);
     }
   };
 
@@ -94,8 +96,6 @@ export const ProductInfo = (props: {
       setOrderQuantity(orderQuantity - 1);
     }
   };
-
-  console.log(props.materialInfo);
 
   return (
     <div className="mt-4 lg:row-span-3 lg:mt-0">
@@ -164,7 +164,14 @@ export const ProductContainer = (props: {
   pText: string;
   srcImg: string;
   productQuantity: number;
-  materialInfo: object;
+  materialInfo: {
+    id: string;
+    name: string;
+    quantity: number;
+    description: string;
+    price: number;
+    userId: string;
+  };
 }) => {
   return (
     <div className="bg-white">

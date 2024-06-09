@@ -1,12 +1,14 @@
+/* eslint-disable no-restricted-imports */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { GET_COMIDA } from "@/hooks/react-query/user/user";
 import { mainTexts } from "@/types/types";
 import { useQuery } from "@apollo/client";
 import { signIn } from "next-auth/react";
-import { ProductItem } from "../Products/modules";
-import Link from "next/link";
-import Image from "next/image";
 
-export const MainMenu = (props: mainTexts) => {
+import Link from "next/link";
+import { ProductItem } from "../Products/modules";
+
+export const MainMenu = () => {
   return (
     <header className="bg-white">
       <nav
@@ -199,7 +201,7 @@ export const MainBanner = () => {
 };
 
 export const ProductBanner = () => {
-  const { data, loading, refetch } = useQuery(GET_COMIDA);
+  const { data, loading } = useQuery(GET_COMIDA);
 
   return (
     <div className="bg-white">
@@ -209,17 +211,23 @@ export const ProductBanner = () => {
           {loading ? (
             <></>
           ) : (
-            data?.getComida.map((producto: any) => (
-              <Link key={producto.id} href="#" className="group">
-                <ProductItem
+            data?.getComida.map(
+              (producto: { id: string; name: string; price: number }) => (
+                <Link
                   key={producto.id}
-                  link={`/single-product/${producto.id}`}
-                  priceText={`$${producto.price}`}
-                  srcImg="/sancocho.webp"
-                  hText={producto.name}
-                ></ProductItem>
-              </Link>
-            ))
+                  href={`/single-product/${producto.id}`}
+                  className="group"
+                >
+                  <ProductItem
+                    key={producto.id}
+                    link={`/single-product/${producto.id}`}
+                    priceText={`$${producto.price}`}
+                    srcImg="/sancocho.webp"
+                    hText={producto.name}
+                  ></ProductItem>
+                </Link>
+              )
+            )
           )}
         </div>
       </div>
@@ -232,9 +240,9 @@ export const BreadCrumbs = (props: mainTexts) => {
     <nav aria-label="breadcrumb" className="w-max">
       <ol className="flex flex-wrap items-center w-full pr-4 py-2 rounded-md bg-blue-gray-50 bg-opacity-60 my-4">
         <li className="flex items-center font-sans text-sm antialiased font-normal leading-normal transition-colors duration-300 cursor-pointer text-blue-gray-900 hover:text-light-blue-500">
-          <a href="#" className="opacity-60">
+          <Link href="/" className="opacity-60">
             Home
-          </a>
+          </Link>
           <span className="mx-2 font-sans text-sm antialiased font-normal leading-normal pointer-events-none select-none text-blue-gray-500">
             /
           </span>
