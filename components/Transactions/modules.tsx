@@ -1,4 +1,9 @@
-import { DELETE_MOVEMENT, GET_MOVEMENT } from "@/hooks/react-query/user/user";
+import {
+  DELETE_MOVEMENT,
+  DELETE_USER,
+  GET_CLIENTES,
+  GET_MOVEMENT,
+} from "@/hooks/react-query/user/user";
 import { mainTexts } from "@/types/types";
 import { useMutation, useQuery } from "@apollo/client";
 import Image from "next/image";
@@ -143,6 +148,86 @@ export const PedidosBodyDashboard = () => {
   );
 };
 
+export const ClientesBodyDashboard = () => {
+  const { data, loading, refetch } = useQuery(GET_CLIENTES);
+  const [deleteUser] = useMutation(DELETE_USER);
+
+  const handleDeleteUser = async (userId: string) => {
+    try {
+      await deleteUser({ variables: { id: userId } });
+      alert("Usuario borrado correctamente");
+      refetch();
+    } catch (e) {
+      alert("No se pudo borrar el usuario");
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-100 p-6 md:w-full">
+      <h1 className="text-3xl font-bold mb-4 text-[#dc2626]">Clientes</h1>
+      <div className="overflow-x-auto">
+        <table className="lg:min-w-full bg-white w-full">
+          <thead>
+            <tr>
+              <th className="py-2 px-4 border-b">ID</th>
+              <th className="py-2 px-4 border-b">Nombre</th>
+              <th className="py-2 px-4 border-b">Email</th>
+              <th className="py-2 px-4 border-b">Email verificado</th>
+              <th className="py-2 px-4 border-b">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {loading ? (
+              <></>
+            ) : (
+              data?.getClientes?.map(
+                (cliente: {
+                  id: string;
+                  name: string;
+                  email: string;
+                  emailVerified: boolean;
+                  role: { name: string };
+                }) => (
+                  <tr key={cliente.id + cliente.name}>
+                    <td className="py-2 px-4 border-b text-center">
+                      {cliente.id}
+                    </td>
+                    <td className="py-2 px-4 border-b text-center">
+                      {cliente.name}
+                    </td>
+                    <td className="py-2 px-4 border-b text-center">
+                      {cliente.email}
+                    </td>
+                    <td className="py-2 px-4 border-b text-center">
+                      {cliente.emailVerified ? "Si" : "No"}
+                    </td>
+
+                    <td className="py-2 px-4 border-b space-x-2 text-center">
+                      {/*<button className="bg-gray-600 text-white px-4 py-2 rounded hover:bg-black">
+          Edit
+        </button>*/}
+                      {cliente.role?.name == "ADMIN" ? (
+                        <>Los usuarios admin no se pueden eliminar</>
+                      ) : (
+                        <button
+                          className="bg-[#dc2626] text-white px-4 py-2 rounded hover:bg-black"
+                          onClick={() => handleDeleteUser(cliente.id)}
+                        >
+                          Delete
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                )
+              )
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};
+
 export const BodyDashboard = (props: {
   hText: string;
   content: Array<any>;
@@ -201,9 +286,9 @@ export const ItemCrud = (props: {
       <td className="py-2 px-4 border-b text-center">{props.quantityText}</td>
       <td className="py-2 px-4 border-b text-center">{props.stateText}</td>
       <td className="py-2 px-4 border-b space-x-2 text-center">
-        <button className="bg-gray-600 text-white px-4 py-2 rounded hover:bg-black">
+        {/*<button className="bg-gray-600 text-white px-4 py-2 rounded hover:bg-black">
           Edit
-        </button>
+        </button>*/}
         <button
           className="bg-[#dc2626] text-white px-4 py-2 rounded hover:bg-black"
           onClick={props.handleMutationResolver}

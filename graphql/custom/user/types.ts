@@ -8,11 +8,22 @@ const User = gql`
         ENVIADO
     }
 
+    enum Enum_RoleName {
+        ADMIN
+        USER
+    }
+
+    type Role {
+        id: ID!
+        name: Enum_RoleName
+    }
 
     type User {
         id: ID!
         name: String!
         email:String!
+        emailVerified: Boolean
+        role: Role
     }
 
     type VerificationToken {
@@ -45,6 +56,7 @@ const User = gql`
         getComida: [Material]
         getComidaById(id: String!): Material
         getMovement: [InventoryMovement]
+        getClientes: [User]
     }
 
     type Mutation {
@@ -52,6 +64,7 @@ const User = gql`
         updateMaterial(id: String!, name: String!, quantity: Int!, userId: String!, description: String, price: Int!): Material!
         createPedido(id: String!, movementType: String!, materialId: String!, quantity: Int!, userId: String!, paymentId: String, state: Enum_Movement_State!): InventoryMovement!
         deleteMovement(id: String!): InventoryMovement!
+        deleteUser(id: String!): User!
     }
 
 

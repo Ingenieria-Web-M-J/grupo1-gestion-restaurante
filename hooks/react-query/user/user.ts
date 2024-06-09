@@ -107,3 +107,34 @@ export const DELETE_MOVEMENT = gql`
                 }
             }
 `
+
+export const GET_CLIENTES = gql`
+    query getClientes{
+        getClientes{
+            id
+            name
+            email
+            emailVerified
+            role{
+                id
+                name
+            }
+        }
+    }
+`
+
+export const DELETE_USER = gql`
+    mutation deleteUser($id: String!){
+        deleteUser(id: $id){
+            id
+            name
+            email
+            emailVerified
+            role{
+                id
+                name
+            }
+        }
+    }
+
+`
