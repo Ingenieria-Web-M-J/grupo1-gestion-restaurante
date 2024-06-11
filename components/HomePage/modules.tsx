@@ -212,7 +212,12 @@ export const ProductBanner = () => {
             <></>
           ) : (
             data?.getComida.map(
-              (producto: { id: string; name: string; price: number }) => (
+              (producto: {
+                id: string;
+                name: string;
+                price: number;
+                imgSrc: string;
+              }) => (
                 <Link
                   key={producto.id}
                   href={`/single-product/${producto.id}`}
@@ -222,7 +227,7 @@ export const ProductBanner = () => {
                     key={producto.id}
                     link={`/single-product/${producto.id}`}
                     priceText={`$${producto.price}`}
-                    srcImg="/sancocho.webp"
+                    srcImg={`/${producto.imgSrc}`}
                     hText={producto.name}
                   ></ProductItem>
                 </Link>

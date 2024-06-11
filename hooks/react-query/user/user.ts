@@ -19,6 +19,7 @@ export const GET_COMIDA = gql`
                 quantity
                 description
                 price
+                imgSrc
             }
         }
 `
@@ -32,6 +33,7 @@ export const GET_COMIDA_BY_ID = gql`
                     quantity
                     description
                     price
+                    imgSrc
                 }
             }
 `

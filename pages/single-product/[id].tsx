@@ -9,6 +9,7 @@ export const SingleProduct = () => {
   const router = useRouter();
   const { id } = router.query;
   const { data, loading } = useQuery(GET_COMIDA_BY_ID, {
+    skip: !id,
     variables: { id },
   });
 
@@ -27,7 +28,7 @@ export const SingleProduct = () => {
             <ProductContainer
               hText={data?.getComidaById.name}
               priceText={data?.getComidaById.price}
-              srcImg="/sancocho.webp"
+              srcImg={data?.getComidaById.imgSrc}
               pText={data?.getComidaById.description}
               productQuantity={data?.getComidaById.quantity}
               materialInfo={data?.getComidaById}

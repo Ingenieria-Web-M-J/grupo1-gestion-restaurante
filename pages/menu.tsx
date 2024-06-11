@@ -8,6 +8,7 @@ interface Producto {
   id: string;
   name: string;
   price: string;
+  imgSrc: string;
 }
 
 export default function Menu() {
@@ -28,7 +29,7 @@ export default function Menu() {
                   key={producto.id}
                   link={`/single-product/${producto.id}`}
                   priceText={`$${producto.price}`}
-                  srcImg="/sancocho.webp"
+                  srcImg={`/${producto.imgSrc}`}
                   hText={producto.name}
                 ></ProductItem>
               ))

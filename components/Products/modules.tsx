@@ -10,7 +10,7 @@ export const ProductItem = (props: mainTexts) => {
       <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
         <img
           src={props.srcImg}
-          alt="Hand holding black machined steel mechanical pencil with brass tip and top."
+          alt="Imagen del plato"
           className="h-full w-full object-cover object-center group-hover:opacity-75"
         />
       </div>
@@ -147,8 +147,8 @@ export const ProductImg = (props: mainTexts) => {
         <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-1 lg:gap-x-8 lg:px-8">
           <div className="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
             <img
-              src={props.srcImg}
-              alt="Model wearing plain white basic tee."
+              src={`/${props.srcImg}`}
+              alt="Imagen de producto"
               className="h-full w-full object-cover object-center"
             />
           </div>

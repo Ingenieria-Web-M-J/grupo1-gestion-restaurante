@@ -6,7 +6,7 @@ const User = {
     Query: {
         getTokens: () => prisma.verificationToken.findMany(),
         getComida: () => prisma.material.findMany(),
-        getComidaById: async (_:never, args:{id:string}) => await prisma.material.findUnique({where:{id:args.id}}),
+        getComidaById: (_:never, args:{id:string}) => prisma.material.findUnique({where:{id:args.id}}),
         getMovement: () => prisma.inventoryMovement.findMany({include:{material:true}}),
         getClientes: () => prisma.user.findMany({include:{role:true}}),
     },

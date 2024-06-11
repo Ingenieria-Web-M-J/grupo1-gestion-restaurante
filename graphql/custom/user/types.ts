@@ -38,6 +38,7 @@ const User = gql`
         description: String
         price: Int
         userId: String!
+        imgSrc: String
     }
 
     type InventoryMovement {

@@ -64,6 +64,7 @@ model Material {
   movements   InventoryMovement[]
   createdAt   DateTime            @default(now())
   updatedAt   DateTime            @updatedAt
+  imgSrc      String              @default("empty_image")
 }
 
 enum Enum_MovementType {
